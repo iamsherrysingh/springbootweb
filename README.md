@@ -1,4 +1,4 @@
-Framework: Spring
-Front-end: JSP
-Back-end: Java
-DB: H2
+1. Framework: Spring
+2. Front-end: JSP
+3. Back-end: Java
+4. DB: H2
