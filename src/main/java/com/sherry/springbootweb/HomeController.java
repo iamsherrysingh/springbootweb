@@ -51,14 +51,14 @@ public class HomeController {
         {
             mv.addObject("result","Entry that you want to delete does not exist");
         }
-
         return mv;
     }
     @RequestMapping("updateAlien")
-    public ModelAndView updateAlien(@RequestParam("aid") int aid, @RequestParam("aname") String aname)
+    public ModelAndView updateAlien(@RequestParam("aid") int aid, @RequestParam("aname") String aname,@RequestParam("alang") String alang)
     {
         Alien alien= repo.findById(aid).orElse(new Alien());
         alien.setAname(aname);
+        alien.setAlang(alang);
         repo.save(alien);
         ModelAndView mv= new ModelAndView("home");
         mv.addObject("result","Update Done!");

@@ -8,7 +8,15 @@ public class Alien {
     @Id
     int aid;
     String aname;
+    String alang;
 
+    public String getAlang() {
+        return alang;
+    }
+
+    public void setAlang(String alang) {
+        this.alang = alang;
+    }
 
     public int getAid() {
         return aid;
@@ -27,13 +35,12 @@ public class Alien {
     }
 
 
-
     @Override
     public String toString() {
         return "Alien{" +
                 "aid=" + aid +
                 ", aname='" + aname + '\'' +
-
+                ", alang='" + alang + '\'' +
                 '}';
     }
 }

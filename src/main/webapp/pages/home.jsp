@@ -7,14 +7,14 @@
     <title>SpringBootApp</title>
 </head>
 <body>
-
-Hello
+<h2> Welcome to H2 DB, a quick in-memory database. </h2>
 
 <h1> ${result} </h1>
 addAlien
 <form action="addAlien">
     <input type="text" name="aid"><br>
     <input type="text" name="aname"><br>
+    <input type="text" name="alang"><br>
     <input type="submit"><br>
 </form>
 
@@ -37,6 +37,13 @@ updateAlien
 <form action="updateAlien">
     <input type="text" name="aid"><br>
     <input type="text" name="aname"><br>
+    <input type="text" name="alang"><br>
+    <input type="submit"><br>
+</form>
+
+fetch based on technology
+<form action="getAlienspl">
+    <input type="text" name="aid"><br>
     <input type="submit"><br>
 </form>
 
