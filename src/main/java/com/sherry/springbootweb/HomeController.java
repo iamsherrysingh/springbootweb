@@ -3,6 +3,7 @@ package com.sherry.springbootweb;
 import com.sherry.springbootweb.com.sherry.springbootweb.dao.AlienRepo;
 import com.sherry.springbootweb.model.Alien;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,9 +41,17 @@ public class HomeController {
     @RequestMapping("deleteAlien")
     public ModelAndView deleteAlien(@RequestParam int aid)
     {
-        repo.deleteById(aid);
         ModelAndView mv= new ModelAndView("home");
-        mv.addObject("result","Deleted!");
+        try
+        {
+            repo.deleteById(aid);
+            mv.addObject("result","Deleted!");
+        }
+        catch(EmptyResultDataAccessException e)
+        {
+            mv.addObject("result","Entry that you added does not exist");
+        }
+
         return mv;
     }
     @RequestMapping("updateAlien")
