@@ -49,7 +49,7 @@ public class HomeController {
         }
         catch(EmptyResultDataAccessException e)
         {
-            mv.addObject("result","Entry that you added does not exist");
+            mv.addObject("result","Entry that you want to delete does not exist");
         }
 
         return mv;
