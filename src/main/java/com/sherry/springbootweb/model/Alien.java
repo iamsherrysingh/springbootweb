@@ -10,13 +10,7 @@ public class Alien {
     String aname;
     String alang;
 
-    public String getAlang() {
-        return alang;
-    }
 
-    public void setAlang(String alang) {
-        this.alang = alang;
-    }
 
     public int getAid() {
         return aid;
@@ -34,6 +28,9 @@ public class Alien {
         this.aname = aname;
     }
 
+    public String getAlang() { return alang;    }
+
+    public void setAlang(String alang) { this.alang = alang; }
 
     @Override
     public String toString() {

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class HomeController {
 
@@ -62,6 +64,17 @@ public class HomeController {
         repo.save(alien);
         ModelAndView mv= new ModelAndView("home");
         mv.addObject("result","Update Done!");
+        return mv;
+    }
+    @RequestMapping("getAlienSpl")
+    public ModelAndView getAlienSpl(@RequestParam String alang)
+    {
+        System.out.println("here");
+        ModelAndView mv = new ModelAndView();
+        List<Alien> alien=repo.findByalang(alang);
+        System.out.println(alien);
+        mv.addObject("alien",alien);
+        mv.setViewName("showAlien");
         return mv;
     }
 }

@@ -1,5 +1,5 @@
-insert into alien values(101,'sherry','java');
-insert into alien values(102,'kammu','c++');
-insert into alien values(103,'aman','java');
-insert into alien values(104,'abhi','java script');
-insert into alien values(105,'shota', 'pyhton');
+insert into alien values(101,'java','sherry');
+insert into alien values(102,'perl','kammu');
+insert into alien values(103,'java','aman');
+insert into alien values(104,'java script', 'abhi');
+insert into alien values(105,'ruby','shota');

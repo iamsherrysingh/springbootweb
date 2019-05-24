@@ -42,8 +42,8 @@ updateAlien
 </form>
 
 fetch based on technology
-<form action="getAlienspl">
-    <input type="text" name="aid"><br>
+<form action="getAlienSpl">
+    <input type="text" name="alang"><br>
     <input type="submit"><br>
 </form>
 
