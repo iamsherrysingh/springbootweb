@@ -5,11 +5,16 @@ import com.sherry.springbootweb.model.Alien;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.annotation.HttpMethodConstraint;
+import javax.websocket.server.PathParam;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class HomeController {
@@ -66,20 +71,17 @@ public class HomeController {
         mv.addObject("result","Update Done!");
         return mv;
     }
-    @RequestMapping("getAlienSpl")
-    public ModelAndView getAlienSpl(@RequestParam String alang)
+    @RequestMapping(value = "/aliens", produces = {"application/xml"})
+    @ResponseBody
+    public List<Alien> getAliensRest()
     {
-        System.out.println("here");
-        ModelAndView mv = new ModelAndView();
-        List<Alien> alien=repo.findByalang(alang);
-        mv.addObject("alien",alien);
-        mv.setViewName("showAlien");
-        ///////////
-        System.out.println("Aid > 103 : "+repo.findByAidGreaterThan(102));
-        System.out.println("Aid <= 104 : "+repo.findByAidLessThanEqual(104));
+        return repo.findAll();
+    }
 
-
-        ////////
-        return mv;
+    @RequestMapping("/alien/{aid}")
+    @ResponseBody
+    public Optional<Alien> getAlienRest(@PathVariable("aid") int aid)
+    {
+        return repo.findById(102);
     }
 }
