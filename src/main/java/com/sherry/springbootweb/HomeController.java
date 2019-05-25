@@ -72,9 +72,14 @@ public class HomeController {
         System.out.println("here");
         ModelAndView mv = new ModelAndView();
         List<Alien> alien=repo.findByalang(alang);
-        System.out.println(alien);
         mv.addObject("alien",alien);
         mv.setViewName("showAlien");
+        ///////////
+        System.out.println("Aid > 103 : "+repo.findByAidGreaterThan(102));
+        System.out.println("Aid <= 104 : "+repo.findByAidLessThanEqual(104));
+
+
+        ////////
         return mv;
     }
 }
