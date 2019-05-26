@@ -71,7 +71,7 @@ public class HomeController {
         mv.addObject("result","Update Done!");
         return mv;
     }
-    @RequestMapping(value = "/aliens", produces = {"application/xml"})
+    @RequestMapping(value = "/aliens")
     @ResponseBody
     public List<Alien> getAliensRest()
     {
