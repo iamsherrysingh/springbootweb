@@ -5,18 +5,12 @@ import com.sherry.springbootweb.model.Alien;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.annotation.HttpMethodConstraint;
-import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class HomeController {
 
     @Autowired
@@ -28,13 +22,11 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping("addAlien")
-    public ModelAndView addAlien(Alien alien)
+    @PostMapping("alien")
+    public Alien addAlien(Alien alien)
     {
         repo.save(alien);
-        ModelAndView mv= new ModelAndView("home");
-        mv.addObject("result","Added Alien!");
-        return mv;
+        return alien;
     }
     @RequestMapping("getAlien")
     public ModelAndView getAlien(@RequestParam int aid)
