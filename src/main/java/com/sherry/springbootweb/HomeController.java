@@ -4,7 +4,6 @@ import com.sherry.springbootweb.com.sherry.springbootweb.dao.AlienRepo;
 import com.sherry.springbootweb.model.Alien;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
@@ -22,8 +21,8 @@ public class HomeController {
         return "home";
     }
 
-    @PostMapping("alien")
-    public Alien addAlien(Alien alien)
+    @PostMapping(path="alien", consumes = {"application/json"})
+    public Alien addAlien(@RequestBody Alien alien)
     {
         repo.save(alien);
         return alien;
@@ -37,10 +36,10 @@ public class HomeController {
         mv.setViewName("showAlien");
         return mv;
     }
-    @RequestMapping("deleteAlien")
-    public ModelAndView deleteAlien(@RequestParam int aid)
+    @DeleteMapping("/alien/{aid}")
+    public String deleteAlien(@PathVariable int aid)
     {
-        ModelAndView mv= new ModelAndView("home");
+        /*ModelAndView mv= new ModelAndView("home");
         try
         {
             repo.deleteById(aid);
@@ -50,30 +49,27 @@ public class HomeController {
         {
             mv.addObject("result","Entry that you want to delete does not exist");
         }
-        return mv;
+        return mv;*/
+        Alien a=repo.getOne(aid);
+        repo.delete(a);
+        return "Deleted";
     }
-    @RequestMapping("updateAlien")
-    public ModelAndView updateAlien(@RequestParam("aid") int aid, @RequestParam("aname") String aname,@RequestParam("alang") String alang)
+    @PutMapping(path="/alien",consumes = {"application/json"})
+    public Alien updateAlien(@RequestBody Alien alien)
     {
-        Alien alien= repo.findById(aid).orElse(new Alien());
-        alien.setAname(aname);
-        alien.setAlang(alang);
         repo.save(alien);
-        ModelAndView mv= new ModelAndView("home");
-        mv.addObject("result","Update Done!");
-        return mv;
-    }
-    @RequestMapping(value = "/aliens")
-    @ResponseBody
-    public List<Alien> getAliensRest()
-    {
-        return repo.findAll();
+        return alien;
     }
 
-    @RequestMapping("/alien/{aid}")
-    @ResponseBody
+    @GetMapping("/alien/{aid}")
     public Optional<Alien> getAlienRest(@PathVariable("aid") int aid)
     {
-        return repo.findById(102);
+        return repo.findById(aid);
+    }
+
+    @GetMapping("/aliens")
+    public List<Alien> getAlienRest()
+    {
+        return repo.findAll();
     }
 }
