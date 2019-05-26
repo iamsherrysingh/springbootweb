@@ -1,11 +1,13 @@
 package com.sherry.springbootweb.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Alien {
     @Id
+    @GeneratedValue
     int aid;
     String aname;
     String alang;
